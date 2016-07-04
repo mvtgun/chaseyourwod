@@ -426,6 +426,7 @@ class UserPresenter extends BasePresenter
         $grid->addText('name', 'Jméno');
         $grid->addText('surname', 'Příjmení');
         $grid->addText('mail', 'E-mail');
+        $grid->addText('potvrzeni_uzivatele', 'Potvrzen');
         $grid->addText('role', 'Práva');
 
         $actions = $grid->addActions('');

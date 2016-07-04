@@ -6,9 +6,12 @@ class="notHome"
     <div class="mainLog wod summary">
 {if $user->loggedIn}
         <h2 n:block="title">Přidat nový WOD</h2>
-        <a class="btn btn-primary" n:href="Wod:wodsView"><i class="fa fa-chevron-left" aria-hidden="true"></i> Zpět na výpis wodů</a>
 
-        {control addWodForm}
+          {if $user->identity->roles[0] == 'admin' || $user->identity->roles[0] == 'spravce'}
+             <a class="btn btn-primary" n:href="Wod:wodsView"><i class="fa fa-chevron-left" aria-hidden="true"></i> Zpět na výpis wodů</a>
+          {/if}
+
+         {control addWodForm}
 
        {else}
                   <ul class="error mt50">

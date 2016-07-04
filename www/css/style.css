@@ -1884,6 +1884,7 @@ footer ul li.current a, footer ul li a:hover, footer ul li a:focus, footer ul li
 
 .summary .btn-primary{
 	margin-left: 0 !important;
+	margin-bottom: 30px;
 }
 
 .hp-wod .typ-wod{
