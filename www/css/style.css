@@ -1136,6 +1136,10 @@ footer ul li.current a, footer ul li a:hover, footer ul li a:focus, footer ul li
 	margin: 30px auto;
 }
 
+.event-detail .event-map .mapa iframe{
+	width: 100% !important;
+}
+
 .event-detail .event-subscribe p{
 	color: #dfdfdf;
 	font-size: 13px;

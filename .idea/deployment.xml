@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="A_port_chyw">
+  <component name="PublishConfigData" serverName="chyw">
     <serverData>
-      <paths name="A_port_chyw">
+      <paths name="chyw">
         <serverdata>
           <mappings>
             <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
