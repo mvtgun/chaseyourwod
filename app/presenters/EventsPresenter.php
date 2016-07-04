@@ -107,7 +107,7 @@ class EventsPresenter extends BasePresenter
         $soutezi = array(
             'Jednotlivci' => 'Jednotlivci',
             'Týmy' => 'Týmy',
-            'OPEN i ELITE i MASTERS'  => 'Jednotlivci i týmy',
+            'Jednotlivci i týmy'  => 'Jednotlivci i týmy',
         );
 
         $form->addSelect('soutezijo', 'Soutěží:', $soutezi)
