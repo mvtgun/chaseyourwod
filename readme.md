@@ -1,30 +1,13 @@
-Nette Sandbox
+Chaseyourwod.com
 =============
 
-Sandbox is a pre-packaged and pre-configured Nette Framework application
-that you can use as the skeleton for your new applications.
-
-[Nette](https://nette.org) is a popular tool for PHP web development.
-It is designed to be the most usable and friendliest as possible. It focuses
-on security and performance and is definitely one of the safest PHP frameworks.
-
-
-Installing
+Annotation
 ----------
+This graduate work describes creating and developing of new web applications. The main goal of this application is the list of events. In the work the used technologies and tools are described. The reader is informed about details of particular functionalities. The building stones of this web application are frameworks Nette and Twitter Bootstrap which are used with other open-source components.
 
-The best way to install Sandbox is using Composer. If you don't have Composer yet, download
-it following [the instructions](https://doc.nette.org/composer). Then use command:
-
-		composer create-project nette/sandbox my-app
-		cd my-app
-
-Make directories `temp` and `log` writable. Navigate your browser
-to the `www` directory and you will see a welcome page. PHP 5.4 allows
-you run `php -S localhost:8888 -t www` to start the web server and
-then visit `http://localhost:8888` in your browser.
-
-It is CRITICAL that whole `app`, `log` and `temp` directories are NOT accessible
-directly via a web browser! See [security warning](https://nette.org/security-warning).
+Key words:
+---------
+Web applications, Framewrok Nette, Framework Twitter Bootstrap, Web Design, CrossFit, List of events, HTML, CSS, PHP, MySQL, Javascript, Model View Controller, programming, coding, UX design.
 
 
 License
