@@ -3,7 +3,7 @@ Chaseyourwod.com
 
 Annotation
 ----------
-This graduate work describes creating and developing of new web applications. The main goal of this application is the list of events. In the work the used technologies and tools are described. The reader is informed about details of particular functionalities. The building stones of this web application are frameworks Nette and Twitter Bootstrap which are used with other open-source components.
+This graduate work describes creating and developing of new web applications. The main goal of this application is the list of events. In the work the used technologies and tools are described. The building stones of this web application are frameworks Nette and Twitter Bootstrap which are used with other open-source components.
 
 Key words:
 ---------
