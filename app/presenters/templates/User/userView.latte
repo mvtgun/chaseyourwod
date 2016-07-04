@@ -1,0 +1,19 @@
+{block body-if}
+class="notHome"
+{/block}
+{block content}
+
+    <div class="summary">
+ {if $user->loggedIn && ($user->roles[0] != 'guest')}
+                <h2 n:block="title">Přehled uživatelů</h2>
+
+                {control basicDataGrid}
+  {else}
+                  <ul class="error mt50">
+                  	<li>Nejdříve je třeba se přihlásit a mít patřičná oprávnění.</li>
+                  </ul>
+                {/if}
+    </div>
+
+{/block}
+

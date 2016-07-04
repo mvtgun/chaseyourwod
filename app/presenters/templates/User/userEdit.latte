@@ -1,0 +1,13 @@
+{block body-if}
+class="notHome"
+{/block}
+
+
+{block content}
+    <div class="mainLog admin">
+                <h2 n:block="title">Editace údajů uživatele <strong>{$userToEdit->name} {$userToEdit->surname}</strong></h2>
+                <a class="btn btn-default" n:href="User:userPasswd $userLogginIn->id">Změna hesla</a>
+                {control userEditForm}
+
+    </div>
+{/block}

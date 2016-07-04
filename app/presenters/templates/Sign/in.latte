@@ -1,0 +1,32 @@
+{block body-if}
+class="notHome"
+{/block}
+
+{block seo_description}
+Přihlašovací formulář pro prohlášení na portálu Chaseyourwod.com
+{/block}
+
+{block seo_kw}
+přihlášení, login, události, soutěže, events, eventy, wods, wody, cvičení, novinky, news, CrossFit, Chaseyourwod.com
+{/block}
+
+{block site_name}
+Přihlášení na portálu Chaseyourwod.com
+{/block}
+
+
+{block content}
+
+<div class="mainLog">
+
+<h1 n:block=title>Přihlášení</h1>
+
+{control signInForm}
+
+<div class="forgot_pasword">
+    <a n:href="User:forgotPasswd">Zapomenuté heslo?</a>
+</div>
+
+</div>
+
+{* or use {include '../components/form.latte', form => signInForm} *}

@@ -1,0 +1,32 @@
+{block body-if}
+class="notHome"
+{/block}
+
+{block seo_description}
+Informace o portálu chaseyourwod.com
+{/block}
+
+{block seo_kw}
+About chaseyourwod.com, O portálu chaseyourwod.com, chaseyourwod, crossfit, chase, your, wod, WOD
+{/block}
+
+{block site_name}
+O poprtálu Chaseyourwod.com
+{/block}
+
+
+{block content}
+
+      <div class="container">
+            <div class="summary article-detail">
+
+                <h2 n:block="title"> {$about->title}</h2>
+
+                    <div class="article-content">
+                    {$about->text|noescape}
+                    </div>
+
+            </div>
+      </div>
+{/block}
+

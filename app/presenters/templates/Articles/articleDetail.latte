@@ -1,0 +1,98 @@
+{block body-if}
+class="notHome"
+{/block}
+
+{block seo_description}
+{$article->seo_description}
+{/block}
+
+{block seo_kw}
+{$article->seo_kw}
+{/block}
+
+{block site_name}
+{$article->site_name}
+{/block}
+
+{block content}
+
+
+      <div class="container">
+
+            <div class="article-detail">
+
+                <h1 n:block="title">{$article->title}</h1>
+
+                <p class="date"><i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;&nbsp; Publikován {$article->date|date:'j.'} {$article->date|date:'n'|mesiceCeskySklonene} {$article->date|date:'Y'}</p>
+                <div class="row perex">
+                  <div class="col-md-4">
+                      <img src="{$basePath}/upload/articles/{$article->img_src|noescape}" alt="article-photo" class="article_photo">
+                   </div>
+
+                    <div class="col-md-8">
+
+                        <div class="article-perex"><p>{$article->Perex|noescape}</p></div>
+
+                     </div>
+                </div>
+
+                    <div class="article-content">
+                    {$article->text|noescape}
+                    </div>
+
+                <div class="row article-end">
+
+                    <div class="col-md-3">
+                        <h4>Podpořte článek</h4>
+                        <div class="fb-share-button" data-href="https://www.facebook.com/chaseyourwod/" data-layout="box_count" data-mobile-iframe="true"></div>
+                    </div>
+
+                     <div class="col-md-6">
+                           <h4>Ohodnoťte článek</h4>
+                                <div class="stars ">
+                                                  {if $user->loggedIn}
+
+                                                    {if $hodnocenicko['uzivatel']}
+                                                    <ul class="rating">
+                                                         <li><a class="star-1" n:href="rateArticle! $article->id, rating => 20"><span>&nbsp;</span></a></li>
+                                                         <li><a class="star-2" n:href="rateArticle! $article->id, rating => 40"><span>&nbsp;</span></a></li>
+                                                         <li><a class="star-3" n:href="rateArticle! $article->id, rating => 60"><span>&nbsp;</span></a></li>
+                                                         <li><a class="star-4" n:href="rateArticle! $article->id, rating => 80"><span>&nbsp;</span></a></li>
+                                                         <li><a class="star-5" n:href="rateArticle! $article->id, rating => 100"><span>&nbsp;</span></a></li>
+                                                     </ul>
+
+                                                    {else}
+
+                                                     <p class="mt30 pull-left">Událost můžete hodnotit pouze jednou.</p>
+
+                                                    {/if}
+                                                     {else}
+                                                      <p>Pro hodnocení události se <a n:href="Sign:in">Přihlaste</a> </p>
+                                                  {/if}
+                                                  <div class="hodnoceni-celkem pull-left">
+                                                     <p>
+                                                     {$hodnocenicko['hodnoceniCelkem']}%
+                                                     </p>
+                                                  </div>
+                                                   <div class="cleaner"></div>
+                                </div>
+                     </div>
+
+                     <div class="col-md-12 mt40">
+                          <h4>Diskuse</h4>
+                        <div class="fb-comments" data-href="https://www.facebook.com/chaseyourwod/" data-numposts="5"></div>
+                    </div>
+
+                </div>
+
+              </div>
+
+
+
+
+            </div>
+
+
+
+{/block}
+

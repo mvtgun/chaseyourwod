@@ -1,0 +1,132 @@
+{block body-if}
+class="notHome"
+{/block}
+
+{block seo_description}
+Výčet událostí, setkání nebo přednášek v rámci portálu Chaseyourwod a sportu CrossFit.
+{/block}
+
+{block seo_kw}
+events, události, soutěže, challenges, CrossFit, Chaseyourwod.com
+{/block}
+
+{block site_name}
+Události na portálu Chaseyourwod.com
+{/block}
+
+{block content}
+      <div class="listEvents">
+
+            <h1 n:block=title>Události</h1>
+
+            <div class="eventsListFilter">
+                 {control filterForm}
+
+                 <a id="showAllRegions" href="#">Zobrazit všechny kraje</a>
+            </div>
+
+            <hr class="fullHr">
+            <div class="events-list udalosti-content">
+
+                    <p class="razeniInfo pull-left" >Události řazené podle času (nejnovější nahoře)</p>
+
+                {*    <ul class="prepinatko pull-right">
+                        <li class="active"><a href=""><i class="fa fa-th-list"></i></a></li>
+                        <li><a href=""><i class="fa fa-th-large"></i></a></li>
+                    </ul>*}
+
+                    <div class="clearfix"></div>
+                   <p class="dn"> {$pocetPolozek = 0}</p>
+
+                    <div n:foreach="$events as $udalost">
+
+                     {if $udalost->status == 'Active'}
+                            <div class="event row
+                                  {if $user->loggedIn}
+                                      {foreach $sledovaneUdalosti as $sledovanaUdalostID_jedna}
+                                          {if $sledovanaUdalostID_jedna == $udalost->id} sledovana_udalost {/if}
+                                      {/foreach}
+                                  {/if}
+                                  ">
+
+                                    <div class="col-sm-3 col-md-3 photo">
+                                        <span class="date">{$udalost->kdy|date:'j.'} {$udalost->kdy|date:'n'|mesiceCeskySklonene} {$udalost->kdy|date:'Y'}</span>
+                                        <img src="{$basePath}/upload/events/{$udalost->foto_udalosti}" width="100%" alt="fotografie">
+                                    </div>
+                                    <div class="col-sm-9 col-md-9">
+                                        <div class="event-title">
+                                            <h2> <a href="{link Events:eventDetail $udalost->id}" >{$udalost->nazev}</a></h2>
+                                            <a href="{link Events:eventDetail $udalost->id}" class="btn btn-primary">Více</a>
+                                             <div class="cleaner"></div>
+                                        </div>
+
+                                        <div class="col-sm-5 col-md-4">
+                                            <ul>
+                                                <li><i class="fa fa-street-view"></i> Kde:  {$udalost->mesto}</li>
+                                                <li><i class="fa fa-home"></i> Pořadatel:  <a href="{$udalost->poradatel_link}" target="_blank">{$udalost->poradatel}</a></li>
+                                                <li>{if $udalost->soutezijo == "Všichni"}<i class="fa fa-users" aria-hidden="true"></i> Všichni{/if}{if $udalost->soutezijo == "Jednotlivci"}<i class="fa fa-user" aria-hidden="true"></i> Jednotlivci{/if} {if $udalost->soutezijo == "Týmy"}<i class="fa fa-users"></i> Týmy{/if}</li>
+                                                <li><i class="fa fa-star-o"></i> {$udalost->pro}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-7 col-md-5">
+                                            <div class="event_describe">
+                                                <p>{$udalost->popis|noescape|truncate:250}</p>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix clear-sm"></div>
+                                         <div class="col-md-3">
+
+                                           {if $udalost->stav == 'reg_yes'}
+                                                                  <span class="registrace_yes"><i class="fa fa-check" aria-hidden="true"></i> REGISTRACE POVOLENA</span>
+                                                                {/if}
+                                                                     {if $udalost->stav == 'reg_no'}
+                                                                     <span class="registrace_no"><i class="fa fa-times" aria-hidden="true"></i> REGISTRACE UKONČENA</span>
+                                                                     {/if}
+                                                {if $user->loggedIn}
+
+                                                 <p class="dn">{$isThere = TRUE}</p>
+                                                                            {if $user->loggedIn}
+                                                                                    {foreach $sledovaneUdalosti as $sledovanaUdalostID_dva}
+                                                                                                     {if $sledovanaUdalostID_dva == $udalost->id}
+                                                                                                         <span class="btn btn-secondary sledovana"><i class="fa fa-eye"></i> Událost sledujete</span>
+                                                                                                         {$isThere = FALSE}
+                                                                                                     {/if}
+                                                                                    {/foreach}
+                                                                                     {if $isThere}
+                                                                                        <a n:href="sledovatUdalost! $udalost->id" class="btn btn-secondary"><i class="fa fa-eye"></i> Sledovat</a>
+                                                                                     {/if}
+                                                                             {/if}
+                                                 {/if}
+                                         </div>
+                                    </div>
+                            </div>
+                     {/if}
+                    <p class="dn"> {$pocetPolozek++}</p>
+                    </div>
+
+                    {if $pocetPolozek==0}
+                        <p class="nothingHere">Zadaným parametrům ve filtru neodpovídají žádné události.</p>
+
+                     {*   {elseif $pocetPolozek>1}
+                          <a href="Events:showMoreEvents! " class="btn btn-more-events" >Zobrazit další události</a> *}
+                    {/if}
+{if $paginationParametrs['pocetStranek']!= 1 }
+                     <div >
+                         <ul class="pagination">
+                             <li {if $paginationParametrs['current']== 1 }class="disabled"{/if}><a {if $paginationParametrs['current']!= 1 } href="{link setNumber! $paginationParametrs['current']-1}"{/if}>&laquo;</a></li>
+
+                             {for $i = 1; $i <= $paginationParametrs['pocetStranek']; $i++}
+                                <li {if $paginationParametrs['current']== $i }class="active"{/if}><a {if $paginationParametrs['current']!= $i } href="{link setNumber! $i}"{/if}>{$i}</a></li>
+                             {/for}
+
+                             <li {if $paginationParametrs['current']== $paginationParametrs['pocetStranek'] }class="disabled"{/if}><a {if $paginationParametrs['current']!= $paginationParametrs['pocetStranek']} href="{link setNumber! $paginationParametrs['current']+1}"{/if}>&raquo;</a></li>
+                         </ul>
+                     </div>
+{/if}
+
+            </div>
+
+
+      </div>
+{/block}
+

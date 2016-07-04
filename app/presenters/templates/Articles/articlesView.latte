@@ -1,0 +1,20 @@
+{block body-if}
+class="notHome"
+{/block}
+{block content}
+
+    <div class="summary summary-articles">
+{if $user->loggedIn && ($user->roles[0] != 'guest')}
+         <h2 n:block="title">Přehled článků</h2>
+         <a class="btn btn-primary pull-right" n:href="Articles:articleAdd">Přidat nový článek</a>
+
+         {control articleDataGrid}
+ {else}
+                  <ul class="error mt50">
+                  	<li>Nejdříve je třeba se přihlásit a mít patřičná oprávnění.</li>
+                  </ul>
+                {/if}
+    </div>
+
+{/block}
+

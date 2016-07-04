@@ -1,0 +1,27 @@
+{block body-if}
+class="notHome"
+{/block}
+{block content}
+
+
+    <div class="event-add">
+
+            <div class="mainLog">
+                 {if $user->loggedIn && ($user->roles[0] != 'guest')}
+                 <h1 n:block="title">Přidat novou událost</h1>
+                  <a class="btn btn-primary" n:href="Events:eventsView"><i class="fa fa-chevron-left" aria-hidden="true"></i> Zpět na výpis událostí</a>
+                  {control addForm}
+
+                {else}
+                  <ul class="error mt50">
+                  	<li>Nejdříve je třeba se přihlásit a mít patřičná oprávnění.</li>
+                  </ul>
+                {/if}
+            </div>
+
+     </div>
+
+
+
+{/block}
+

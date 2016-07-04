@@ -1,0 +1,112 @@
+{block body-if}
+class="notHome"
+{/block}
+{block content}
+
+
+
+    <div class="user-detail">
+            <div class="row">
+
+                <h2 n:block="title">Uživatelská sekce</h2>
+
+               <div class="col-sm-3 col-md-3">
+                    <img src="{$basePath}/upload/profile/{$userLogginIn->profile_photo}" width="100%" alt="profilova_fotografie">
+                </div>
+
+                <div class="col-xs-9 col-sm-7 col-md-7 user-details-info">
+                    <table>
+                        <tbody>
+                            <tr><td>Status:</td><td> <b>{if $userLogginIn->role == 'guest'}  Uživatel {elseif $userLogginIn->role == 'redaktor'}  Redaktor {elseif $userLogginIn->role == 'admin'} Administrátor {elseif $userLogginIn->role == 'spravce'} Správce {/if} </b></td></tr>
+                            <tr><td>Jméno:</td><td><b>{$userLogginIn->name}</b></td></tr>
+                            <tr><td>Příjmení:</td><td><b>{$userLogginIn->surname}</b></td></tr>
+                            <tr class="separator"/>
+                            <tr><td>Přihlašovací e-mail:</td><td><b>{$userLogginIn->mail}</b></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                 <div class="col-xs-3 col-sm-2 col-md-2">
+                        <a n:href="User:userEdit $userLogginIn->id" class="btn btn-primary btn-changes pull-right">Upravit údaje</a>
+                  </div>
+
+            </div>
+
+            <div class="row buttons">
+
+            {if $userLogginIn->role == 'guest'}
+
+            {elseif $userLogginIn->role == 'spravce'}
+                <div class="col-md-15">
+                   <a n:href="Events:eventsView" class="btn btn-primary btn-editings">Přehled událostí</a>
+                </div>
+                <div class="col-md-15">
+                   <a n:href="Articles:articlesView" class="btn btn-primary btn-editings">Přehled článků</a>
+                </div>
+                <div class="col-md-15">
+                   <a n:href="Wod:wodsView" class="btn btn-primary btn-editings">Přehled WOD</a>
+                </div>
+                <div class="col-md-15">
+                   <a n:href="Pages:pagesView" class="btn btn-primary btn-editings">Další podstránky</a>
+                </div>
+
+            {elseif $userLogginIn->role == 'redaktor'}
+                <div class="col-md-15">
+                   <a n:href="Events:eventsView" class="btn btn-primary btn-editings">Přehled událostí</a>
+                </div>
+                <div class="col-md-15">
+                   <a n:href="Articles:articlesView" class="btn btn-primary btn-editings">Přehled článků</a>
+                </div>
+            {elseif $userLogginIn->role == 'admin'}
+                <div class="col-md-15">
+                  <a n:href="User:userView" class="btn btn-primary btn-editings">Přehled uživatelů</a>
+                </div>
+                <div class="col-md-15">
+                   <a n:href="Events:eventsView" class="btn btn-primary btn-editings">Přehled událostí</a>
+                </div>
+                <div class="col-md-15">
+                   <a n:href="Articles:articlesView" class="btn btn-primary btn-editings">Přehled článků</a>
+                </div>
+                <div class="col-md-15">
+                   <a n:href="Wod:wodsView" class="btn btn-primary btn-editings">Přehled WOD</a>
+                </div>
+                <div class="col-md-15">
+                   <a n:href="Pages:pagesView" class="btn btn-primary btn-editings">Další podstránky</a>
+                </div>
+            {/if}
+
+            </div>
+
+            <div class="row user_activity">
+               <div class="col-md-6">
+                    <h4>Moje WOD:</h4>
+
+
+                    <div class="summary small-summary one-btn">
+                      {control navrzeneWodyGrid}
+                    </div>
+
+                        <p class="ny">Víte, že nám můžete navrhnout nový WOD?</p>
+                    	  <a n:href="Wod:wodAdd" class="btn btn-primary btn-changes">Navrhnot WOD</a>
+
+               </div>
+
+                <div class="col-md-6">
+                    <h4>Sledované události:</h4>
+
+                        {if $userLogginIn->sledovane_udalosti == "0;" || $userLogginIn->sledovane_udalosti == "0"}
+                        <p class="ny">Zatím nesledujete žádnou událost. Událost můžete sledovat kliknutím na tlačítko Sledovat u každé události.</p>
+                        {else}
+                         <div class="summary small-summary">
+                             {control sledovaneUdalostiGrid}
+                         </div>
+                        {/if}
+
+                </div>
+            </div>
+
+    </div>
+
+
+{/block}
+

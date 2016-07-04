@@ -1,0 +1,40 @@
+{block body-if}
+class="notHome"
+{/block}
+
+{block seo_description}
+Vygeneruj si náhodný Workou of the day, nebo nám navrhni nový.
+{/block}
+
+{block seo_kw}
+WOD, Random WOD, CrossFit WOD, cvičení dne, cvičení na den, náhodné cvičení na den, náhodný WOD
+{/block}
+
+{block site_name}
+Náhodný WOD
+{/block}
+
+{block content}
+
+    <div class="wod">
+
+        <h2 n:block="title">Náhodný WORKOUT OF THE DAY</h2>
+
+                <div class="hp-wod">
+                      <p class="title">{$wod->title}</p>
+                      <p class="typ-wod">{$wod->typ}</p>
+                      <p>{$wod->text|noescape}</p>
+                 </div>
+
+             {if $user->loggedIn}
+
+                <a n:href="Wod:wodAdd" class="btn btn-primary">Navrhněte nový WOD</a>
+
+             {else}
+               <p class="ny">Víte, že nám můžete navrhnout nový WOD? Musíte se na to <a n:href="Sign:in">přihlásit</a> </p>
+             {/if}
+
+ </div>
+
+{/block}
+

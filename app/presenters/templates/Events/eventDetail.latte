@@ -1,0 +1,203 @@
+{block body-if}
+class="notHome"
+{/block}
+
+{block seo_description}
+{$event->seo_description}
+{/block}
+
+{block seo_kw}
+{$event->seo_kw}
+{/block}
+
+{block site_name}
+{$event->site_name}
+{/block}
+
+
+{block content}
+
+    <div class="event-detail">
+            <div class="row">
+
+               <div class="col-sm-3 col-md-4">
+                     <span class="date">{$event->kdy|date:'j.'} {$event->kdy|date:'n'|mesiceCeskySklonene} {$event->kdy|date:'Y'}</span>
+                    <img src="{$basePath}/upload/events/{$event->foto_udalosti}" width="100%" alt="fotografie">
+
+                </div>
+
+                <div class="col-sm-9 col-md-8 event-details-info">
+
+                  <h2 n:block="title">{$event->nazev}</h2>
+
+                       {if $event->stav == 'reg_yes'}
+                         <span class="registrace_yes pull-right"><i class="fa fa-check" aria-hidden="true"></i> REGISTRACE POVOLENA</span>
+                       {/if}
+
+                            {if $event->stav == 'reg_no'}
+                            <span class="registrace_no pull-right"><i class="fa fa-times" aria-hidden="true"></i> REGISTRACE UKONČENA</span>
+                            {/if}
+
+                    <div class="clearfix"></div>
+
+                    <table>
+                        <tbody>
+                            <tr><td><i class="fa fa-street-view"></i> Kde:</td><td> <b> {$event->misto}, {$event->ulice}, {$event->mesto},
+
+               {if $event->kraj =="A"}
+                Hlavní město Praha
+                 {/if}
+             {if $event->kraj =="S"}
+            Středočeský kraj
+              {/if}
+             {if $event->kraj =="C"}
+            Jihočeský kraj
+              {/if}
+             {if $event->kraj =="P"}
+            Plzeňský kraj
+              {/if}
+             {if $event->kraj =="K"}
+            Karlovarský kraj
+            {/if}
+             {if $event->kraj =="U"}
+            Ústecký kraj
+            {/if}
+             {if $event->kraj =="L"}
+            Liberecký kraj
+            {/if}
+             {if $event->kraj=="H"}
+            Královéhradecký kraj
+            {/if}
+             {if $event->kraj =="E"}
+            Pardubický kraj
+            {/if}
+             {if $event->kraj =="J"}
+            Kraj Vysočina
+            {/if}
+             {if $event->kraj =="B"}
+            Jihomoravský kraj
+            {/if}
+             {if $event->kraj =="M"}
+                Olomoucký kraj
+            {/if}
+             {if $event->kraj =="Z"}
+                Zlínský kraj
+            {/if}
+             {if $event->kraj =="T"}
+             Moravskoslezský kraj
+            {/if}
+                            </b> <a href="{$event->mapa_link}">Mapa <i class="fa fa-external-link" aria-hidden="true"></i></a></td></tr>
+                            <tr><td><i class="fa fa-home" aria-hidden="true"></i> Pořadatel:</td><td><a target="_blank" href="{$event->poradatel_link}">{$event->poradatel} <i class="fa fa-external-link"></i></a></td></tr>
+                            <tr><td>{if $event->soutezijo == "Jednotlivci i týmy"}<i class="fa fa-users" aria-hidden="true"></i> Jednotlivci i týmy{/if}{if $event->soutezijo == "Jednotlivci"}<i class="fa fa-user" aria-hidden="true"></i> Jednotlivci{/if} {if $event->soutezijo == "Týmy"}<i class="fa fa-users"></i> Týmy{/if}</td><td> {$event->pocet_ucastniku}</td></tr>
+                            <tr><td><i class="fa fa-star-o" aria-hidden="true"></i> {$event->pro}</td><td></td></tr>
+                            <tr><td><i class="fa fa-flag" aria-hidden="true"></i> Startovné</td><td><b>{$event->startovne}</b></td></tr>
+                            <tr><td><i class="fa fa-calendar" aria-hidden="true"></i> Začátek</td><td>{$event->kdy|date:'j.'} {$event->kdy|date:'n'|mesiceCeskySklonene} {$event->kdy|date:'Y'} v {$event->cas_od|date:'H:i'} do {$event->kdy_do|date:'j.'} {$event->kdy_do|date:'n'|mesiceCeskySklonene} {$event->kdy_do|date:'Y'}</td></tr>
+                            <tr><td><i class="fa fa-fire" aria-hidden="true"></i> Kvalifikace</td><td><b>{$event->kvalifikace}</b></td></tr>
+                        </tbody>
+                    </table>
+
+                       {if $user->loggedIn}
+                            <p class="dn">{$isThere = TRUE}</p>
+
+                                {if $user->loggedIn}
+                                   {foreach $sledovaneUdalosti as $sledovanaUdalostID_dva}
+                                       {if $sledovanaUdalostID_dva == $event->id}
+                                         <span class="btn btn-secondary sledovana"><i class="fa fa-eye"></i> Událost sledujete</span>
+                                         {$isThere = FALSE}
+                                       {/if}
+                                   {/foreach}
+                                    {if $isThere}
+                                         <a n:href="sledovatUdalost! $event->id" class="btn btn-secondary"><i class="fa fa-eye"></i> Sledovat</a>
+                                    {/if}
+                                {/if}
+                        {/if}
+
+                </div>
+            </div>
+
+                   <div class="row event-registrace">
+
+                        {if $event->stav == 'reg_yes'}
+                         <h3>Registrace na soutěž je možná pouze prostřednictvím e-mailu pořadateli.</h3>
+
+                           <div class="col-sm-offset-2 col-sm-4 col-md-3 col-md-offset-3">
+                                                     <p><i class="fa fa-envelope-o" aria-hidden="true"></i> {$event->poradatel_mail|noescape}</p>
+                                               </div>
+
+                                               <div class="col-sm-4 col-md-3">
+                                                     <a href="mailTo:{$event->poradatel_mail|noescape}" class="btn btn-primary">Napsat e-mail pořadateli</a>
+                           </div>
+                       {/if}
+
+                            {if $event->stav == 'reg_no'}
+                                <h3>Registrace na soutěž již není možná.</h3>
+                                <div class="col-md-3 col-sm-offset-3"><br></div>
+                            {/if}
+                   </div>
+                <div class="event-subscribe">
+                    <h3>Popis události</h3>
+                    <p>{$event->popis|noescape}</p>
+                </div>
+
+                <div class="event-map">
+                    <h3>Lokace</h3>
+                    <div class="mapa">
+                      {$event->lokace_embed|noescape}
+                    </div>
+                </div>
+
+                <div class="row event-end">
+
+                                    <div class="col-md-3">
+                                        <h4>Podpořte událost</h4>
+                                        <div class="fb-share-button" data-href="https://www.facebook.com/chaseyourwod/" data-layout="box_count" data-mobile-iframe="true"></div>
+                                    </div>
+
+                                     <div class="col-md-7">
+                                           <h4>Ohodnoťte událost</h4>
+
+                                            {if $hodnocenicko['udalostProbehla']}
+                                                <div class="stars">
+                                                      {if $user->loggedIn}
+                                                        {if $hodnocenicko['uzivatel']}
+                                                        <ul class="rating">
+                                                             <li><a class="star-1" n:href="rateEvent! $event->id, rating => 20"><span>&nbsp;</span></a></li>
+                                                             <li><a class="star-2" n:href="rateEvent! $event->id, rating => 40"><span>&nbsp;</span></a></li>
+                                                             <li><a class="star-3" n:href="rateEvent! $event->id, rating => 60"><span>&nbsp;</span></a></li>
+                                                             <li><a class="star-4" n:href="rateEvent! $event->id, rating => 80"><span>&nbsp;</span></a></li>
+                                                             <li><a class="star-5" n:href="rateEvent! $event->id, rating => 100"><span>&nbsp;</span></a></li>
+                                                         </ul>
+                                                        {else}
+                                                         <p class="mt30 pull-left">Událost můžete hodnotit pouze jednou.</p>
+                                                        {/if}
+                                                         {else}
+                                                          <p>Pro hodnocení události se <a n:href="Sign:in">Přihlaste</a> </p>
+                                                      {/if}
+                                                      <div class="hodnoceni-celkem pull-left">
+                                                         <p>
+                                                         {$hodnocenicko['hodnoceniCelkem']}%
+                                                         </p>
+                                                      </div>
+                                                      <div class="cleaner"></div>
+                                               </div>
+                                            {else}
+                                                  <div class="stars">
+                                                      <p class="mt30 pull-left">Událost zatím neproběhla. Není tedy možné ji hodnotit.</p>
+                                                  </div>
+                                            {/if}
+                                     </div>
+
+                                     <div class="col-md-12 mt40">
+                                          <h4>Diskuse</h4>
+                                        <div class="fb-comments" data-href="https://www.facebook.com/chaseyourwod/" data-numposts="5"></div>
+                                    </div>
+
+                                </div>
+
+            </div>
+
+
+
+
+{/block}
+

@@ -1,0 +1,127 @@
+{**
+ * @param string   $basePath web base path
+ * @param array    $flashes  flash messages
+ *}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>{ifset title}{include title|striptags} | {/ifset}ChaseYourWod</title>
+
+    <meta name="description" content="{ifset seo_description}{include seo_description|striptags}{/ifset}">
+    <meta name="keywords" content="{ifset seo_kw}{include seo_kw|striptags}{/ifset}">
+    <meta property="og:site_name" content="{ifset site_name}{include site_name|striptags} | {/ifset}ChaseYourWod">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="{$basePath}/images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="{$basePath}/images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{$basePath}/images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{$basePath}/images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{$basePath}/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="{$basePath}/images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="{$basePath}/images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="{$basePath}/images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{$basePath}/images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{$basePath}/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{$basePath}/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="{$basePath}/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{$basePath}/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="{$basePath}/images/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{$basePath}/images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="{$basePath}/css/bootstrap.min.css"  type="text/css" media="screen">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+
+    <link rel="stylesheet" href="{$basePath}/css/style.css">
+    <link rel="stylesheet" href="{$basePath}/css/responsive.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,700,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!--	<link rel="shortcut icon" href="{$basePath}/favicon.ico"> -->
+	<meta name="viewport" content="width=device-width">
+	{block head}{/block}
+</head>
+
+<body {include body-if}>
+
+<div id="fb-root"></div>
+
+    <div class="container">
+
+        <header class="row">
+            <div class="col-sm-6 col-md-6">
+                <a n:href="Homepage:default" class="logo">
+                    <img src="{$basePath}/images/logo.svg" height="70px" alt="ChaseYourWod.com">
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                    <ul class="login">
+
+                         {if $user->loggedIn}
+                         <li class="login-btn"><i class="fa fa-user"></i>Jste přihlášen jako <a n:href="User:userProfile"> {$user->identity->data['name']} {$user->identity->data['surname']}</a></li> <li class="logout"><a n:href="Sign:out">Odhlásit</a></li>
+                                {else}
+
+                                    <li class="login-btn"><i class="fa fa-user"></i><a n:href="Sign:in">Přihlásit</a></li>
+                                    <li class="registrace"><a n:href="Register:register">Registrace</a></li>
+                         {/if}
+                    </ul>
+                    <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+             <!-- Static navbar -->
+                  <nav class="navbar navbar-default">
+                      <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                        </button>
+                      </div>
+                      <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav" n:inner-foreach="$menuItems as $item => $link">
+                          <li {ifCurrent $link}class="current"{/ifCurrent}><a n:href="$link">{$item}</a></li>
+                        </ul>
+                      </div><!--/.nav-collapse -->
+                  </nav>
+                   <div class="clearfix"></div>
+        </header>
+
+        <div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+
+        {include content}
+
+        <footer>
+            <ul n:inner-foreach="$menuItems as $item => $link">
+                <li {ifCurrent $link}class="current"{/ifCurrent}> <a n:href="$link">{$item}</a></li>
+            </ul>
+
+            <p>&copy; {date('Y')}, all rights are reserved; owner is Chaseyourwod.com</p>
+                <a n:href="Homepage:default" class="logo">
+                    <img src="{$basePath}/images/logo_foot.svg" height="50px" alt="ChaseYourWod.com">
+                </a>
+        </footer>
+    </div>
+
+    <div id="fb-root"></div>
+	{block scripts}
+
+        <script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
+        <script src="{$basePath}/js/bootstrap.min.js"  type="text/javascript" ></script><!-- Bootstrap -->
+        <script type="text/javascript" src="{$basePath}/js/jquery.webRating.min.js"></script>
+        <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="{$basePath}/js/main.js"></script>
+	{/block}
+</body>
+</html>

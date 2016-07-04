@@ -1,0 +1,403 @@
+
+@media (min-width: 768px) {
+    .col-sm-15 {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 992px) {
+    .col-md-15 {
+        width: 20%;
+        float: left;
+    }
+
+    .clear-sm{
+        display: none;
+    }
+}
+@media (min-width: 1200px) {
+    .col-lg-15 {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media(max-width: 1199px){
+    .fb_iframe_widget{
+  /*      width: 285px !important; */
+        display: table !important;
+        margin: auto;
+        padding-bottom: 30px;
+    }
+
+}
+
+@media (max-width: 991px) {
+
+    header .login li{
+        display: block;
+    }
+
+    header .login .registrace, header .login .logout{
+        margin: 25px 0;
+        float: right;
+    }
+
+    .notHome header{
+        height: auto;
+    }
+
+    .udalosti-content .event .registrace_yes, .udalosti-content .event .registrace_no{
+        margin-bottom: 20px;
+    }
+
+    .udalosti-content .event .btn-secondary, .event-detail .btn-secondary{
+        margin-bottom: 20px;
+    }
+
+    .event-detail .event-subscribe, .article-detail .article-content, .listEvents .fullHr, .event-detail .event-registrace, .user-detail .buttons, #hp-slider, header #navbar, #home header{
+        padding: 0;
+        margin: 0;
+    }
+
+    .article-detail .article-content{
+        padding: 20px;
+        margin: 30px 0;
+    }
+
+    .event-detail .event-subscribe{
+        padding: 15px 0px;
+    }
+
+    .listEvents .fullHr{
+        margin: 20px 0;
+    }
+
+    footer{
+        margin: 0;
+        padding: 30px 15px;
+    }
+
+    .container{
+        width: 100%;
+    }
+
+    .col-md-15 {
+        width: 50%;
+        float: left;
+    }
+
+    #snippet-sledovaneUdalostiGrid-dataGrid, #snippet-navrzeneWodyGrid-dataGrid, #snippet-pageDataGrid-dataGrid, #snippet-wodsDataGrid-dataGrid, #snippet-articleDataGrid-dataGrid, #snippet-basicDataGrid-dataGrid, #snippet-eventsDataGrid-dataGrid{
+       overflow-x: scroll;
+        width: 100%;
+    }
+
+    .data-grid table{
+        width: 1200px;
+    }
+
+    .summary-articles .btn-primary, .summary-events .btn-primary{
+        float: none !important;
+        margin: 30px auto;
+        display: table;
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    #home header{
+        background-repeat: no-repeat;
+        height: 175px;
+        padding: 0;
+        margin: 0;
+    }
+
+
+    header .logo{
+        margin: 36px 0 0 0px;
+    }
+
+
+    header .logo img{
+        height: auto;
+        max-width: 250px;
+        display: table;
+        margin: auto;
+    }
+
+    header .login{
+        float: none;
+        display: table;
+        margin: auto;
+        margin-top: 15px;
+        position: relative;
+        z-index: 9999;
+        text-align: center;
+    }
+
+    header .login li{
+        display: inline;
+    }
+
+    header .login .registrace, header .login .logout{
+        margin: 25px 0;
+        float: none;
+        margin-left: 30px;
+    }
+
+
+
+    #hp-slider h1{
+        font-size: 50px;
+        text-align: center;
+    }
+
+    #slideshow{
+        width: 100%;
+    }
+
+    .navbar-toggle{
+        background: #ffd800;
+        font-size: 20px;
+        font-weight: 600;
+        border: none;
+        box-shadow: 0px 2px 0px #e1a900;
+        padding: 12px 15px;
+    }
+
+    header .navbar-default{
+        margin-top: -38px;
+    }
+
+    .navbar-default .navbar-toggle .icon-bar{
+        background-color: #5b3108;
+    }
+
+    .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{
+        background-color: #5b3108;
+        box-shadow: 0px 2px 0px #331c05;
+    }
+
+    .navbar-default .navbar-toggle:focus .icon-bar{
+        background-color: #ffd800;
+    }
+
+    .navbar-default .navbar-toggle:hover .icon-bar{
+        background-color: #ffd800;
+    }
+
+    .mainLog form{
+        text-align: center;
+    }
+
+    .mainLog input, .mainLog textarea, .mainLog select{
+        display: table;
+        margin: auto;
+    }
+
+    .event img, .event-detail img{
+        width: 50%;
+        display: block;
+        margin: auto;
+    }
+
+    .udalosti-content .event .event-title{
+        height: auto;
+    }
+
+    .navbar-default .navbar-collapse, .navbar-default .navbar-form{
+        border: none;
+    }
+
+    header #navbar{
+        margin: 0;
+        padding: 0;
+        position: relative;
+        z-index: 9999;
+        width: 100%;
+    }
+
+    .user-detail img{
+        width: 50%;
+        display: table;
+        margin: auto;
+        margin-bottom: 30px;
+    }
+
+    .fb_iframe_widget,
+    .fb_iframe_widget span,
+    .fb_iframe_widget span iframe[style] {
+        min-width: 100% !important;
+        width: 100% !important;
+    }
+
+    .event-detail .event-registrace p{
+        text-align: center;
+    }
+
+    .navbar-nav{
+        margin: 0;
+    }
+}
+
+@media (max-width: 650px) {
+    header .navbar-default{
+        margin-top: 0;
+    }
+
+    header .logo{
+        margin-top: 15px;
+    }
+
+    header .login{
+        display: table;
+    }
+
+    header .login .logout a{
+        background: none;
+        box-shadow: none;
+        text-decoration: underline;
+        color: #ffd800;
+        padding: 0;
+        display: inline;
+    }
+
+    header .login li{
+        float: none;
+        display: block;
+    }
+
+    header .navbar-default{
+        margin-top: -64px;
+    }
+
+    .event-detail h2{
+        width: 100%;
+        text-align: center;
+    }
+
+    .event-detail .registrace_yes, .event-detail .registrace_no{
+        float: none;
+        display: table;
+        width: 100%;
+        text-align: center;
+        margin: 20px auto;
+    }
+
+
+
+}
+
+@media (max-width: 580px) {
+    .event-detail img, .user-detail .col-xs-9, .user-detail .col-xs-3{
+        width: 100%;
+    }
+
+    .user-detail .btn-changes{
+        display: table;
+        margin: auto;
+        float: none !important;
+        margin-top: 20px;
+    }
+
+}
+
+
+
+@media (max-width: 495px) {
+
+    header .navbar-default{
+        position: fixed;
+        right: 0px;
+        z-index: 9999;
+        width: 100%;
+    }
+
+    header .login{
+        position: relative;
+        z-index: 10000;
+    }
+
+    header .login .logout{
+        width: 160px;
+        display: table;
+        margin: 25px auto;
+    }
+
+    header .login .logout a:hover{
+        background: none;
+        border: none;
+        box-shadow: none;
+    }
+
+    .col-md-15{
+        width: 100%;
+        float: none;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+    .event img{
+        width: 100%;
+        display: block;
+        margin: auto;
+    }
+
+    .user-detail img{
+        width: 95%;
+        display: block;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+    .novinky-nadpis, .udalosti-nadpis{
+        height: auto;
+    }
+
+
+    .udalosti-nadpis h4,.novinky-nadpis h5{
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .udalosti-nadpis a, .novinky-nadpis a{
+        text-align: center;
+        width: 100%;
+    }
+
+    .udalosti-content .event .event-title .btn{
+        position: relative;
+        z-index: 999;
+        margin: auto;
+        margin-bottom: 10px;
+        display: table;
+        float: none;
+    }
+
+    .udalosti-content .event .event-title h2{
+        float: none;
+        width: 100%;
+        text-align: center;
+    }
+
+    .listEvents .eventsListFilter #frm-filterForm .checkbox{
+        height: auto;
+    }
+
+}
+
+@media (max-width: 300px) {
+    header .logo img{
+        width: 80%;
+    }
+    footer a img{
+        width: 100%
+    }
+}
+
+
+

@@ -1,0 +1,60 @@
+{block body-if}
+class="notHome"
+{/block}
+
+{block seo_description}
+Výčet článků a novinek v rámci portálu Chaseyourwod a sportu CrossFit.
+{/block}
+
+{block seo_kw}
+articles, clanky, novinky, news, CrossFit, Chaseyourwod.com
+{/block}
+
+{block site_name}
+Články na portálu Chaseyourwod.com
+{/block}
+
+{block content}
+
+      <div class="articles-list">
+
+               <h1 n:block="title">Výpis článků</h1>
+
+                <div n:foreach="$clanky as $clanek" >
+
+                        {if $clanek->status == 'Active'}
+
+                            <div class="row novinka">
+                                      <div class="col-md-4">
+                                                <img src="{$basePath}/upload/articles/{$clanek->img_src|noescape}" alt="article-photo" class="article_photo">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h3><a href="{link Articles:articleDetail $clanek->id}">{$clanek->title}</a></h3>
+                                                <p class="date"><i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;&nbsp; Publikován {$clanek->date|date:'j.'} {$clanek->date|date:'n'|mesiceCeskySklonene} {$clanek->date|date:'Y'}</p>
+                                                <div class="event_describe">
+                                                    <p>{$clanek->Perex|noescape|truncate:350}</p>
+                                                </div>
+                                                <a class="btn btn-default" href="{link Articles:articleDetail $clanek->id}">Číst celé &nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                                            </div>
+                             </div>
+                        {/if}
+                   </div>
+                     {*     <a href="" class="btn btn-more-articles" >Zobrazit další články</a> *}
+
+{if $paginationParametrs['pocetStranek']!= 1 }
+                     <div >
+                         <ul class="pagination">
+                             <li {if $paginationParametrs['current']== 1 }class="disabled"{/if}><a {if $paginationParametrs['current']!= 1 } href="{link setNumber! $paginationParametrs['current']-1}"{/if}>&laquo;</a></li>
+
+                             {for $i = 1; $i <= $paginationParametrs['pocetStranek']; $i++}
+                                <li {if $paginationParametrs['current']== $i }class="active"{/if}><a {if $paginationParametrs['current']!= $i } href="{link setNumber! $i}"{/if}>{$i}</a></li>
+                             {/for}
+
+                             <li {if $paginationParametrs['current']== $paginationParametrs['pocetStranek'] }class="disabled"{/if}><a {if $paginationParametrs['current']!= $paginationParametrs['pocetStranek']} href="{link setNumber! $paginationParametrs['current']+1}"{/if}>&raquo;</a></li>
+                         </ul>
+                     </div>
+{/if}
+      </div>
+
+{/block}
+

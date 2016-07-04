@@ -1,0 +1,26 @@
+{block body-if}
+class="notHome"
+{/block}
+{block content}
+
+
+    <div class="article-add">
+
+  {if $user->loggedIn && ($user->roles[0] != 'guest')}
+            <div class="mainLog">
+
+             <h1 n:block="title">Přidat nový článek</h1>
+<a class="btn btn-primary" n:href="Articles:articlesView"><i class="fa fa-chevron-left" aria-hidden="true"></i> Zpět na výpis článků</a>
+                {control addArticleForm}
+            </div>
+ {else}
+                  <ul class="error mt50">
+                  	<li>Nejdříve je třeba se přihlásit a mít patřičná oprávnění.</li>
+                  </ul>
+                {/if}
+     </div>
+
+
+
+{/block}
+

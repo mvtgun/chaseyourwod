@@ -1,0 +1,22 @@
+{block body-if}
+    class="notHome"
+{/block}
+{block content}
+
+    <div class="summary summary-wods">
+  {if $user->loggedIn && ($user->roles[0] != 'guest')}
+                <h2 n:block="title">Přehled WOD</h2>
+
+                 <a class="btn btn-primary pull-right" n:href="Wod:wodAdd">Přidat nový WOD</a>
+
+                 {control wodsDataGrid}
+       {else}
+                  <ul class="error mt50">
+                  	<li>Nejdříve je třeba se přihlásit a mít patřičná oprávnění.</li>
+                  </ul>
+                {/if}
+    </div>
+
+
+{/block}
+

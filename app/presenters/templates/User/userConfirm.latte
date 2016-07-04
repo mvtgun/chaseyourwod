@@ -1,0 +1,20 @@
+{block body-if}
+class="notHome"
+{/block}
+{block content}
+
+    <div class="summary user-confirm">
+
+           <h2 n:block="title">Děkujeme za potvrzení vašeho účtu</h2>
+
+            {if userConfirmer}
+             <p class="tc">Nyní se můžete <a n:href="Sign:in">přihlásit</a></p>
+             {else}
+             <p>Stala se nějaká chyba, pravděpoboně již tento odkaz není funkční.</p>
+            {/if}
+
+    </div>
+
+
+{/block}
+
