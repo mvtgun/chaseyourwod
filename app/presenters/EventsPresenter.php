@@ -1133,7 +1133,7 @@ class EventsPresenter extends BasePresenter
                 $poleIds[$i] = $row['id'];
             }
 
-            $itemsPerPage = 2;
+            $itemsPerPage = 10;
 
             $poleUdalosti = array();
             $countOfNumbers = ceil($pocetUdalosti/$itemsPerPage);

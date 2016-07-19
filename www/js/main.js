@@ -73,7 +73,7 @@ $( document ).ready(function() {
                         'https://fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
                         'https://www.tinymce.com/css/codepen.min.css'
                 ],
-                language_url : 'http://michaelsvarc.com/chyw/www/js/cs_CZ.js'  // site absolute URL
+                language_url : 'http://www.chaseyourwod.com/js/cs_CZ.js'  // site absolute URL
         });
 
         tinymce.init({
@@ -91,7 +91,7 @@ $( document ).ready(function() {
                     'https://fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
                     'https://www.tinymce.com/css/codepen.min.css'
                 ],
-                language_url : 'http://michaelsvarc.com/chyw/www/js/cs_CZ.js'  // site absolute URL
+                language_url : 'http://www.chaseyourwod.com/js/cs_CZ.js'  // site absolute URL
         });
 
 
