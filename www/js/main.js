@@ -1,7 +1,6 @@
 $( document ).ready(function() {
 
     var i = 0;
-
     var poleIdWods = new Array();
 
     $(".sledovane-ids .sledovane-id").each(function(){
@@ -16,16 +15,12 @@ $( document ).ready(function() {
             var foundedID = $(this).find(itemID).text();
 
         for(var i = 0; i<poleIdWods.length;i++){
-
-           var idFromArray = poleIdWods[i].charAt(0);
-           var idFromArrayTag = poleIdWods[i].charAt(1);
-
+           var idFromArray = poleIdWods[i].slice(0,-1);
+           var idFromArrayTag = poleIdWods[i].substr(poleIdWods[i].length - 1); // => "1"
             if(idFromArrayTag=="A"&&foundedID==idFromArray){
                 $(this).find(itemBtn).addClass("active");
             }
-
         }
-
         });
 
 

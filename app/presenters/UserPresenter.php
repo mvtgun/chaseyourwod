@@ -559,12 +559,10 @@ class UserPresenter extends BasePresenter
 
         foreach ($sledovaneWodsPole as &$polozkaVPoli) {
 
-            if(strlen($polozkaVPoli)>0){
-                $polozkaVPoli = $polozkaVPoli[0];
-            }
+              $polozkaVPoliID = substr("$polozkaVPoli", 0, -1);
 
-            if($polozkaVPoli!=0){
-                $row = $this->database->table('wod')->get($polozkaVPoli);
+            if($polozkaVPoliID!=0){
+                $row = $this->database->table('wod')->get($polozkaVPoliID);
                 $data[$i]=['id'=>$row['id'],'title'=>$row['title'],'typ'=>$row['typ']];
             }
             $i++;
@@ -690,11 +688,7 @@ class UserPresenter extends BasePresenter
 
         foreach ($sledovaneWodsPole as &$polozkaVPoli) {
 
-            if(strlen($polozkaVPoli)>0){
-                $polozkaVPoliID = $polozkaVPoli[0];
-            }else{
-                $polozkaVPoliID = 0;
-            }
+            $polozkaVPoliID = substr("$polozkaVPoli", 0, -1);
 
             if($polozkaVPoli!=""){
                 if($polozkaVPoliID==$wodId){
@@ -721,8 +715,8 @@ class UserPresenter extends BasePresenter
 
         foreach ($sledovaneWodsPole as &$polozkaVPoli) {
 
-            $polozkaVPoliID = substr($polozkaVPoli,0,1);
-            $polozkaVPoliPriznak = substr($polozkaVPoli,1,2);
+            $polozkaVPoliID = substr("$polozkaVPoli", 0, -1);
+            $polozkaVPoliPriznak = substr($polozkaVPoli,-1);
 
             if($polozkaVPoliID != $id){
                 if($polozkaVPoliID != 0){
