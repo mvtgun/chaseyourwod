@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="d7158420-5aa9-4579-bd9f-8083058b8b55" name="chyw" url="http://115616.w16.wedos.net">
+      <webServer id="d7158420-5aa9-4579-bd9f-8083058b8b55" name="CHYW" url="http://115616.w16.wedos.net">
         <fileTransfer host="115616.w16.wedos.net" port="21" rootFolder="/www" password="dfc0dfe8dfd2dfffdfc1dfcfdfe8dfd2" username="w115616_ad">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
