@@ -1,5 +1,34 @@
 $( document ).ready(function() {
 
+    var i = 0;
+
+    var poleIdWods = new Array();
+
+    $(".sledovane-ids .sledovane-id").each(function(){
+        poleIdWods[i] = $(this).text();
+        i++;
+    });
+
+    var itemID = $(".idOfWod");
+    var itemBtn = $(".btn-success");
+
+    $("#snippet-sledovaneWodsGrid-dataGrid .data-grid tbody tr").each(function(){
+            var foundedID = $(this).find(itemID).text();
+
+        for(var i = 0; i<poleIdWods.length;i++){
+
+           var idFromArray = poleIdWods[i].charAt(0);
+           var idFromArrayTag = poleIdWods[i].charAt(1);
+
+            if(idFromArrayTag=="A"&&foundedID==idFromArray){
+                $(this).find(itemBtn).addClass("active");
+            }
+
+        }
+
+        });
+
+
         $( ".star-2" )
             .mouseenter(function() {
                     $(".star-1").addClass("rating-active");

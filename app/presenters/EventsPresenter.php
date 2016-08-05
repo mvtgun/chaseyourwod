@@ -1406,7 +1406,7 @@ class EventsPresenter extends BasePresenter
         $thisUserRow = $this->database->table('users')->get($thisUserID);
 
         $retezec = $thisUserRow['sledovane_udalosti'];
-        $retezec = $retezec.";".$idUdalosti;
+        $retezec = $retezec.$idUdalosti.";";
 
         $this->database->table('users')->where('id', $thisUserID)->update(Array('sledovane_udalosti' => $retezec));
         $this->flashMessage('Událost sledujete.');

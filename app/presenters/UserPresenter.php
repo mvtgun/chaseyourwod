@@ -397,6 +397,15 @@ class UserPresenter extends BasePresenter
         $user = $this->database->table('users')->get($this->user->getId());
 
         if ($this->user->isLoggedIn()) {
+
+
+            $thisUserID = $this->getUser()->getId();
+            $thisUserRow = $this->database->table('users')->get($thisUserID);
+
+            $sledovaneWodsRetezec = $thisUserRow['sledovane_wods'];
+            $sledovaneWodsPole = explode(';',$sledovaneWodsRetezec);
+
+            $this->template->userSledovaneWods = $sledovaneWodsPole;
             $this->template->userLogginIn = $user;
         }else{
             $this->flashMessage('Nejdříve je třeba se přihlásit.');
@@ -535,6 +544,76 @@ class UserPresenter extends BasePresenter
         return $grid;
     }
 
+
+    protected function createComponentSledovaneWodsGrid($name) {
+
+        $thisUserID = $this->getUser()->getId();
+        $thisUserRow = $this->database->table('users')->get($thisUserID);
+
+        $sledovaneWodsRetezec = $thisUserRow['sledovane_wods'];
+        $sledovaneWodsPole = explode(';',$sledovaneWodsRetezec);
+
+
+        $data = array();
+        $i = 0;
+
+        foreach ($sledovaneWodsPole as &$polozkaVPoli) {
+
+            if(strlen($polozkaVPoli)>0){
+                $polozkaVPoli = $polozkaVPoli[0];
+            }
+
+            if($polozkaVPoli!=0){
+                $row = $this->database->table('wod')->get($polozkaVPoli);
+                $data[$i]=['id'=>$row['id'],'title'=>$row['title'],'typ'=>$row['typ']];
+            }
+            $i++;
+        }
+
+        $source = new \Mesour\DataGrid\ArrayDataSource($data);
+
+        $grid = new Grid($this, $name);
+        $grid->setPrimaryKey('id'); // primary key is now used always
+        // set locale to Czech
+        $grid->setLocale('cs');
+        $table_id = 'id';
+
+        $grid->setDataSource($source);
+        $grid->addText('id', 'ID')->setAttribute("class","idOfWod");
+        $grid->addText('title', 'Název');
+        $grid->addText('typ', 'Typ');
+
+        $actions = $grid->addActions('');
+
+        $actions->addButton()
+            ->setType('btn-default')
+            ->setIcon('glyphicon-search')
+            ->setTitle('Prohlédnout WOD')
+            ->setAttribute('href', new Link('Wod:wodDetailKonkretni', array(
+                'wodId' => '{' . $table_id . '}'
+            )));
+
+        $actions->addButton()
+            ->setType('btn-success')
+            ->setIcon('glyphicon-ok')
+            ->setTitle('Označit jako hotový (odcvičený)')
+            ->setAttribute('href', new Link('OznacWodA!', array(
+                'wodId' => '{' . $table_id . '}'
+            )));
+
+        $actions->addButton()
+            ->setType('btn-danger')
+            ->setIcon('glyphicon-remove')
+            ->setTitle('Přestat sledovat WOD')
+            ->setAttribute('href', new Link('PrestatSledovatWod!', array(
+                'id' => '{' . $table_id . '}'
+            )));
+
+        // enable pager
+        $grid->enablePager(15); // set limit for page to 5, default = 20
+        return $grid;
+    }
+
     protected function createComponentNavrzeneWodyGrid($name) {
 
         $thisUserID = $this->getUser()->getId();
@@ -590,15 +669,70 @@ class UserPresenter extends BasePresenter
 
     public function renderForgotPasswd()
     {
-
-
     }
-
 
     public function handleDeleteWod($id)
     {
         $this->database->table('wod')->where('id', $id)->delete();;   // smaže wod
         $this->flashMessage('WOD byl trvale odstraněn.');
+    }
+
+    public function handleOznacWodA($wodId)
+    {
+       $thisUserID = $this->getUser()->getId();
+        $thisUserRow = $this->database->table('users')->get($thisUserID);
+
+        $retezec = $thisUserRow['sledovane_wods'];
+        $sledovaneWodsPole = explode(';',$retezec);
+
+        $retezecFinal = "";
+        $retezecVsuvka = $wodId."A";
+
+        foreach ($sledovaneWodsPole as &$polozkaVPoli) {
+
+            if(strlen($polozkaVPoli)>0){
+                $polozkaVPoliID = $polozkaVPoli[0];
+            }else{
+                $polozkaVPoliID = 0;
+            }
+
+            if($polozkaVPoli!=""){
+                if($polozkaVPoliID==$wodId){
+                    $retezecFinal = $retezecFinal.$retezecVsuvka.";";
+                }else{
+                    $retezecFinal = $retezecFinal.$polozkaVPoli.";";
+                }
+            }
+        }
+        $this->database->table('users')->where('id', $thisUserID)->update(Array('sledovane_wods' => $retezecFinal));
+        $this->flashMessage('WOD '. $wodId .' je označen jako hotový.');
+    }
+
+    public function handlePrestatSledovatWod($id)
+    {
+        $thisUserID = $this->getUser()->getId();
+        $thisUserRow = $this->database->table('users')->get($thisUserID);
+
+        $retezec = $thisUserRow['sledovane_wods'];
+        $sledovaneWodsPole = explode(';',$retezec);
+
+        $retezecFinal = "0N;";
+        $polozkaVPoliPriznak = "N";
+
+        foreach ($sledovaneWodsPole as &$polozkaVPoli) {
+
+            $polozkaVPoliID = substr($polozkaVPoli,0,1);
+            $polozkaVPoliPriznak = substr($polozkaVPoli,1,2);
+
+            if($polozkaVPoliID != $id){
+                if($polozkaVPoliID != 0){
+                    $retezecFinal = $retezecFinal.$polozkaVPoliID.$polozkaVPoliPriznak.";";
+                }
+            }
+        }
+
+        $this->database->table('users')->where('id', $thisUserID)->update(Array('sledovane_wods' => $retezecFinal));
+        $this->flashMessage('WOD '. $id .' již nesledujete.');
     }
 
     public function handlePrestatSledovatUdalost($id)

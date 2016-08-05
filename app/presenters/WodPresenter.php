@@ -321,6 +321,30 @@ class WodPresenter extends BasePresenter
 
         $this->template->wod = $this->database->table('wod')->where('id = ?',$hodnota)->fetch();
 
+        $thisUserID = $this->getUser()->getId();
+        $thisUserRow = $this->database->table('users')->get($thisUserID);
+
+        $sledovaneWodsRetezec = $thisUserRow['sledovane_wods'];
+        $sledovaneWodsPole = explode(';',$sledovaneWodsRetezec);
+
+        $this->template->sledovaneWods = $sledovaneWodsPole;
+        $this->template->wodA = $hodnota."A";
+        $this->template->wodN = $hodnota."N";
+
+    }
+
+    public function handleWodSave($id)
+    {
+
+        $thisUserID = $this->getUser()->getId();
+        $thisUserRow = $this->database->table('users')->get($thisUserID);
+
+        $retezec = $thisUserRow['sledovane_wods'];
+        $retezec = $retezec.$id.'N'.";";
+
+           $this->database->table('users')->where('id', $thisUserID)->update(Array('sledovane_wods' => $retezec));
+           $this->flashMessage('WOD byl uložen na váš profil.');
+
     }
 
 }

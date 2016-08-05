@@ -79,7 +79,19 @@ class="notHome"
 
             <div class="row user_activity">
                <div class="col-md-6">
-                    <h4>Moje WOD:</h4>
+
+                     <div class="sledovane-ids">
+                     {foreach $userSledovaneWods as $sledovaneWods_dva}
+                         <p class="sledovane-id dn">{$sledovaneWods_dva}</p>
+                     {/foreach}
+                    </div>
+                    <h4 title="Můžete si uložit nějaký WOD na později a označit jej jako odcvičený." >Uložené WODs:</h4>
+
+                      <div class="summary small-summary">
+                        {control sledovaneWodsGrid}
+                      </div>
+
+                    <h4>Moje WODs:</h4>
 
 
                     <div class="summary small-summary one-btn">

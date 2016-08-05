@@ -26,7 +26,7 @@ a:hover,a:active{color: #87671b;}
 .mt20{margin-top: 20px;}
 .mt30{margin-top: 30px;}
 .mt40{margin-top: 40px;}
-.mt50{margin-top: 50px;}
+.mt50{margin-top: 50px !important;}
 .mt60{margin-top: 60px;}
 
 .dn{display: none;}
@@ -1554,7 +1554,7 @@ footer ul li.current a, footer ul li a:hover, footer ul li a:focus, footer ul li
 	margin: 0;
 }
 
-.datagrid-bottom .btn-default, .summary  .table tr td.button-component .btn-default,.summary  .table tr td.button-component .btn-danger{
+.datagrid-bottom .btn-default, .summary  .table tr td.button-component .btn-default,.summary  .table tr td.button-component .btn-danger,.summary  .table tr td.button-component .btn-success{
 	border-radius: 0;
 	background: #393737;
 	color: #a2a2a2;
@@ -1620,6 +1620,14 @@ footer ul li.current a, footer ul li a:hover, footer ul li a:focus, footer ul li
 .summary .table tr td.button-component .btn-danger:focus,
 .summary .table tr td.button-component .btn-danger:active{
 	background: #ff2020;
+	color: white;
+}
+
+.summary .table tr td.button-component .btn-success.active,
+.summary .table tr td.button-component .btn-success:hover,
+.summary .table tr td.button-component .btn-success:focus,
+.summary .table tr td.button-component .btn-success:active{
+	background: #3abd06;
 	color: white;
 }
 
@@ -1912,4 +1920,58 @@ footer ul li.current a, footer ul li a:hover, footer ul li a:focus, footer ul li
 .pagination{
 	display: table;
 	margin: 50px auto !important;
+}
+
+.btn-groupa{
+	display: table;
+	margin: auto;
+	padding: 50px;
+	background: #1b1b1b;
+	margin-bottom: 40px;
+}
+
+.btn-groupa-sm{
+	display: table;
+	margin: auto;
+	padding: 10px 40px;
+	background: #1b1b1b;
+	margin-bottom: 20px;
+}
+
+.btn-groupa-sm h2{
+	font-size: 15px;
+}
+
+.wod .btn-groupa a{
+	display: inline;
+	margin-left: 20px;
+}
+
+.wod .btn-groupa a:first-child{
+	margin-left: 0;
+	padding: 11px 30px;
+	font-weight: bold;
+}
+
+.sledovany-wod{
+	font-size: 15px !important;
+	margin-left: 20px;
+}
+
+.done-wod .hp-wod{
+	background: #256325;
+}
+
+.done-wod .hp-wod p{
+	color: #a8e7a8;
+}
+
+.done-wod .hp-wod p.title{
+	color: white;
+}
+
+.done-wod .hp-wod .fa-check{
+	color: #49a949;
+	font-size: 95px;
+	margin-bottom: 35px;
 }

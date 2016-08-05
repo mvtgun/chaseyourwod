@@ -16,11 +16,27 @@ Náhodný WOD
 
 {block content}
 
-    <div class="wod">
+    <div class="wod
+    {if $user->loggedIn}
+       {foreach $sledovaneWods as $sledovaneWods_dva}
+                 {if $sledovaneWods_dva == $wodA}
+                      done-wod
+                 {/if}
+        {/foreach}
+        {/if}
+    ">
 
-        <h2 n:block="title">Náhodný WORKOUT OF THE DAY</h2>
+
+           <h2 n:block="title">Náhodný WORKOUT OF THE DAY</h2>
 
                 <div class="hp-wod">
+{if $user->loggedIn}
+                  {foreach $sledovaneWods as $sledovaneWods_dva}
+                                     {if $sledovaneWods_dva == $wodA}
+                                         <i title="Toto cvičení máte označeno jako odcvičené." class="fa fa-check" aria-hidden="true"></i>
+                                     {/if}
+                            {/foreach}
+{/if}
                       <p class="title">{$wod->title}</p>
                       <p class="typ-wod">{$wod->typ}</p>
                       <p>{$wod->text|noescape}</p>
@@ -28,10 +44,28 @@ Náhodný WOD
 
              {if $user->loggedIn}
 
-                <a n:href="Wod:wodAdd" class="btn btn-primary">Navrhněte nový WOD</a>
+                <div class="btn-groupa">
+                 <a n:href="Wod:wodAdd" class="btn btn-default">Navrhněte nový WOD</a>
+                    <p class="dn">{$sledovanyWod = FALSE}</p>
+
+                  {foreach $sledovaneWods as $sledovaneWods_dva}
+                                  {if $sledovaneWods_dva == $wodA || $sledovaneWods_dva == $wodN}
+                                      <p class="dn">{$sledovanyWod = TRUE}</p>
+                                  {/if}
+                         {/foreach}
+
+                        {if $sledovanyWod}
+                                     <span class="btn btn-secondary sledovana sledovany-wod"><i class="fa fa-eye"></i> WOD máte uložen ve svém profilu</span>
+                                   {else}
+                                      <a n:href="wodSave! $wod->id," title="WOD si můžete uložit do svého profilu pro pozdější cvičení." class="btn btn-primary">Uložte si WOD na později</a>
+                        {/if}
+
+                </div>
 
              {else}
-               <p class="ny">Víte, že nám můžete navrhnout nový WOD? Musíte se na to <a n:href="Sign:in">přihlásit</a> </p>
+              <div class="btn-groupa">
+               <p class="ny">Víte, že nám můžete navrhnout nový WOD? Nebo že si můžete uložit WOD do profilu? Musíte se na to &nbsp; <a class="btn btn-default" n:href="Sign:in">Přihlásit</a> </p>
+               </div>
              {/if}
 
  </div>
