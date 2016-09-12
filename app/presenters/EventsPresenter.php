@@ -375,7 +375,8 @@ class EventsPresenter extends BasePresenter
         );
 
         $form->addSelect('kraj', 'Kraj:', $kraje)
-            ->setPrompt('Vyber kraj');
+            ->setPrompt('Vyber kraj')
+	        ->setRequired("Vyplňte kraj.");
 
         $form->addText('mapa_link', 'Odkaz na mapu:');
         $form->addText('lokace_embed', 'Embed mapy:');
