@@ -347,6 +347,7 @@ class EventsPresenter extends BasePresenter
         $form->addGroup();
         $form->addText('nazev', 'Název akce:')
         ->setRequired("Vyplňte pole Název akce");
+
         $form->addText('misto', 'Místo konání (hala, tělocvična):')
             ->setRequired("Vyplňte místo konání");
 
@@ -423,7 +424,7 @@ class EventsPresenter extends BasePresenter
         $form->addText('pocet_ucastniku', 'Počet účastníků:');
 
         $form->addText('kdy', 'Od kdy:')
-            ->setRequired()
+            ->setRequired("Vyplňte od kdy se akce koná.")
          //   ->setFormat('Y/m/d/')
             ->setAttribute('class', 'form-control datepicker');
 
@@ -433,7 +434,7 @@ class EventsPresenter extends BasePresenter
 
 
         $form->addText('cas_od', 'Od kolika:')
-            ->setRequired()
+            ->setRequired("Vyplňte od kolika se akce koná")
          //   ->setFormat('H:i')
             ->setAttribute('class', 'form-control datetimepicker');
 /*
